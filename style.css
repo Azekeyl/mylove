@@ -1,0 +1,79 @@
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  height:100vh; overflow:hidden;
+  background:#ffe6ef;
+  font-family:Georgia, serif;
+  display:flex; align-items:center; justify-content:center;
+}
+.wrap { text-align:center; padding:20px; width:100%; }
+h2 { color:#e91e63; font-size:26px; }
+.sub { color:#b56a85; margin:10px 0; font-size:14px; }
+
+.envelope {
+  width:320px; height:220px;
+  margin:40px auto 20px;
+  position:relative;
+  cursor:pointer;
+}
+.body {
+  position:absolute; inset:0;
+  background:#ff5c8a;
+  border-radius:12px;
+  z-index:2;
+  clip-path: polygon(0 0, 50% 60%, 100% 0, 100% 100%, 0 100%);
+}
+.letter {
+  position:absolute;
+  left:12px; top:12px;
+  width:296px; height:196px;
+  background:white;
+  border-radius:10px;
+  padding:14px;
+  z-index:1;
+  transition: top 1s ease;
+  box-shadow:0 5px 15px rgba(0,0,0,0.15);
+}
+.letter h1 { color:#e91e63; font-size:30px; margin:6px 0; }
+.letter p { color:#7a2a44; font-size:15px; line-height:1.5; }
+.big-heart { font-size:32px; margin-top:6px; animation: beat 1s infinite; }
+@keyframes beat { 0%,100%{transform:scale(1)} 50%{transform:scale(1.3)} }
+
+.flap {
+  position:absolute; top:0; left:0;
+  width:100%; height:115px;
+  background:#ff7aa2;
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  border-radius:12px 12px 0 0;
+  z-index:4;
+  transform-origin: top center;
+  transition: transform 0.7s ease;
+}
+.seal {
+  position:absolute; top:98px; left:50%;
+  transform:translateX(-50%);
+  width:44px; height:44px;
+  background:white; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  font-size:20px; z-index:5;
+  box-shadow:0 3px 8px rgba(0,0,0,0.25);
+}
+
+/* PAG BUKAS NA */
+.envelope.open .flap {
+  transform: rotateX(180deg);
+  z-index:1;
+}
+.envelope.open .letter {
+  top:-140px;
+  z-index:3;
+  height:220px;
+}
+.envelope.open .seal { display:none; }
+
+.flower {
+  position:absolute; top:-40px;
+  font-size:28px; z-index:20;
+  animation: fall linear forwards;
+  pointer-events:none;
+}
+@keyframes fall { to { transform: translateY(110vh) rotate(360deg); } }
